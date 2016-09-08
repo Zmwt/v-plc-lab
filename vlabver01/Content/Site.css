@@ -1,0 +1,138 @@
+﻿/*
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+// Set padding to keep content from hitting the edges
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+// Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+// Set width on the form input elements since they're 100% wide by default
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+*/
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext';
+
+/* html, body */
+html, body
+{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.2em;
+}
+
+body
+{
+    padding-top : 50px;
+    background : url(back.jpg) no-repeat fixed center;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+}
+
+/* validation fix */
+.field-validation-valid
+{
+    display: none;
+}
+.validation-summary-valid
+{
+    display: none;
+}
+
+
+
+
+.container#pageContainer
+{
+    flex: 1;
+}
+
+footer
+{
+    background : #808080;
+    opacity: 0.5;
+}
+
+footer > p
+{
+    opacity: 1;
+    font-size: 0.5em;
+
+}
+
+/* plc */
+div#chat
+{
+    /*width: 90%;*/
+    height: 600px;
+    resize: vertical;
+    background: white;
+}
+
+div#chatRoom
+{
+    width: 100%;
+    height: 500px;
+    /*resize: inherit;*/
+
+    background: #f0f0f0;
+
+    overflow-y: scroll;
+    word-wrap: break-word;
+    color: black;
+    padding: 10px 10px 10px 10px;
+
+}
+
+#chatControls
+{
+    display: flex;
+}
+
+#chatMsg
+{
+    margin: 5px 10px 5px 10px;
+    display: inline-block;
+    flex-grow: 1;
+}
+
+#chatBtn
+{
+    display: inline-block;
+    margin: 5px 10px 5px 0px;
+    border-radius: 5px;
+    width: 78px;
+}
+
+.btn-inactive
+{
+    color: #c2c2c2;
+}
+
+
+div#chatRoom > div:nth-of-type(2n+1)
+{
+    background: #e2e2e2;
+}
+
+#chatUsersP
+{
+    text-align: right;
+    font-size: 0.6em;
+    color: #202020;
+    margin: 10px;
+}

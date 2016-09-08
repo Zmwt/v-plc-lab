@@ -1,0 +1,22 @@
+﻿@model vlabver01.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+<h4>Logowanie za pomocą konta Google lub Facebook.</h4>
+<hr />
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+
+    using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        <div id="socialLoginList">
+            <p>
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    <button type="submit" class="btn btn-default" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Zaloguj za pomocą konta @p.Caption">@p.AuthenticationType</button>
+                }
+            </p>
+        </div>
+    }
+
+}

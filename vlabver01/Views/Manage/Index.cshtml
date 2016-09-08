@@ -1,0 +1,31 @@
+﻿@model vlabver01.Models.IndexViewModel
+@{
+    ViewBag.Title = "Zarządzanie kontem użytkownika";
+}
+
+<h2>@ViewBag.Title.</h2>
+<br />
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+<div>
+
+
+
+    <p>
+        Hasło :
+        @if (Model.HasPassword)
+            {
+            @Html.ActionLink("Zmiana hasła", "ChangePassword")
+        }
+        else
+        {
+            @Html.ActionLink("Utwórz hasło", "SetPassword")
+        }
+    </p>
+
+    <hr />
+
+    <p>Loginy zewnętrzne : @Html.ActionLink("Zarządzaj", "ManageLogins")</p>
+    <!--@Model.Logins.Count-->
+    
+</div>
