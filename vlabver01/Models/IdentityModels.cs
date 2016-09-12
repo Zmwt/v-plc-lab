@@ -30,7 +30,7 @@ namespace vlabver01.Models
             return new ApplicationDbContext();
         }
 
-
+        /*
         public bool Seed(ApplicationDbContext context)
         {
             bool success = false;
@@ -69,6 +69,7 @@ namespace vlabver01.Models
 
             return success;
         }
+        */
 
     }
 

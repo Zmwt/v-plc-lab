@@ -1,74 +1,122 @@
-﻿@{
-    ViewBag.Title = "V LAB";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿@model List<vlabver01.Models.PLC>
+@*model vlabver01.ViewModels.PLCViewModel*@
 
 
-@Scripts.Render("~/bundles/signalr")
+    @{
+        ViewBag.Title = "V LAB";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
 
-<div id="chat">
-    <p id="chatUsersP">Użytkownicy : <span id="chatUsers">-</span></p>
+    @Scripts.Render("~/bundles/signalr")
 
-    <div id="chatRoom">
-    
+
+    <div id="chat">
+        <p id="chatUsersP">Użytkownicy : <span id="chatUsers">-</span></p>
+
+        <div id="chatRoom">
+
+        </div>
+
+        <div id="chatControls">
+            <input type="text" id="chatMsg" placeholder="Wpisz wiadomość.." />
+            <input type="button" id="chatBtn" value="Wyślij" />
+        </div>
+
+
     </div>
 
-    <div id="chatControls">
-        <input type="text" id="chatMsg" placeholder="Wpisz wiadomość.." />
-        <input type="button" id="chatBtn" value="Wyślij" />
-    </div>
-   
-
-</div>
-
-@*
-    <div id="plc">
-        <form>
-            <input type="text" id="ip" value="43.20.10.10" />
-            <input type="text" id="port" value="500" />
-        </form>
-    </div>
-*@
-
-
-<script type="text/javascript">
-    $(function () {
-        var con = $.hubConnection();
-        var hub = con.createHubProxy('Chat');
-        hub.on('userCount', function (i) {
-            $('#chatUsers').text(i);
-        });
-
-        hub.on('sendMsg', function (msg) {
-            $('#chatRoom').append('<div>'+msg+'</div>');
-        });
-        
-        
-        con.start().done(function () {
-
-            $('#chatBtn').click(function () {
-                hub.invoke('send', $('#chatMsg').val());
-                $('#chatMsg').val("");
-                $('#chatMsg').focus();
-                $('#chatRoom').scrollTop($('#chatRoom')[0].scrollHeight);
-
-                $('#chatBtn').prop('disabled', true);
-                $('#chatBtn').addClass('btn-inactive');
-                setTimeout(function () {
-                    $('#chatBtn').prop('disabled', false);
-                    $('#chatBtn').removeClass('btn-inactive');
-                }, 2000);
 
 
 
-                
+    <table>
+        <tr>
+            <th>
+                Nazwa
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                IP
+            </th>
+            <th>
+                Port
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IPAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Port)
+                </td>
+            </tr>
+        }
+    </table>
+
+
+    @*
+        <div id="plc">
+            <form>
+                <input type="text" id="ip" value="43.20.10.10" />
+                <input type="text" id="port" value="500" />
+            </form>
+        </div>
+    *@
+
+
+
+
+
+
+
+    <script type="text/javascript">
+        $(function () {
+            var con = $.hubConnection();
+            var hub = con.createHubProxy('Chat');
+            hub.on('userCount', function (i) {
+                $('#chatUsers').text(i);
             });
+
+            hub.on('sendMsg', function (msg) {
+                $('#chatRoom').append('<div>' + msg + '</div>');
+            });
+
+
+            con.start().done(function () {
+
+                $('#chatBtn').click(function () {
+                    hub.invoke('send', $('#chatMsg').val());
+                    $('#chatMsg').val("");
+                    $('#chatMsg').focus();
+                    $('#chatRoom').scrollTop($('#chatRoom')[0].scrollHeight);
+
+                    $('#chatBtn').prop('disabled', true);
+                    $('#chatBtn').addClass('btn-inactive');
+                    setTimeout(function () {
+                        $('#chatBtn').prop('disabled', false);
+                        $('#chatBtn').removeClass('btn-inactive');
+                    }, 2000);
+
+
+
+
+                });
+            });
+
+
+
         });
-
-
-
-    });
-</script>
+    </script>
 
 
