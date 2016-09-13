@@ -27,9 +27,12 @@
     </div>
 
 
+    
 
 
-    <table>
+
+
+    <table id="plcList">
         <tr>
             <th>
                 Nazwa
@@ -42,6 +45,9 @@
             </th>
             <th>
                 Port
+            </th>
+            <th>
+                <!-- tu jest del button -->
             </th>
         </tr>
 
@@ -60,9 +66,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Port)
                 </td>
+                <td>
+                    @Html.ActionLink("Usuń", "DeletePLC", new { id = item.Id }, new { @class = "btn btn-warning"})
+                </td>
             </tr>
         }
     </table>
+
+
+@Html.ActionLink("Dodaj", "AddPLC", null, new { @class = "btn btn-success" })
 
 
     @*

@@ -14,15 +14,13 @@ namespace vlabver01.Controllers
     {
 
         PLCContext db = new PLCContext();
-        // GET: PLC
         public ActionResult Main()
         {
             return View(db.PLC.ToList());
         }
 
 
-
-        public ActionResult Viewtest()
+        public ActionResult AddPLC()
         {
             return View();
         }
@@ -30,26 +28,50 @@ namespace vlabver01.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Viewtest([Bind(Include = "Name, Description, IPAddress, Port")]PLC plc)
+        public ActionResult AddPLC([Bind(Include = "Name, Description, IPAddress, Port")]PLC plc)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     db.PLC.Add(plc);
-                    //db.Students.Add(student);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Main");
                 }
             }
             catch (DataException)
             {
-                //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Błąd zapisu bazy danych");
             }
             return View(plc);
         }
 
+        [HttpGet]
+        [ActionName("DeletePLC")]
+        public ActionResult DeletePLCGet(int id)
+        {
+            PLC plc = db.PLC.Find(id);
+            
+            return View(plc);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePLC(int id)
+        {
+            try
+            {
+                PLC plc = db.PLC.Find(id);
+                db.PLC.Remove(plc);
+                db.SaveChanges();
+            }
+            catch (DataException)
+            {
+
+            }
+            return RedirectToAction("Main");
+        }
 
 
     }

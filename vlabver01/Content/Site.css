@@ -1,31 +1,4 @@
-﻿/*
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-// Set padding to keep content from hitting the edges
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-// Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-// Set width on the form input elements since they're 100% wide by default
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-*/
-
-@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext';
+﻿@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext';
 
 /* html, body */
 html, body
@@ -55,7 +28,7 @@ body
 
 
 
-
+/* flex - footer */
 .container#pageContainer
 {
     flex: 1;
@@ -74,7 +47,7 @@ footer > p
 
 }
 
-/* plc */
+/* plc chat */
 div#chat
 {
     /*width: 90%;*/
@@ -135,4 +108,31 @@ div#chatRoom > div:nth-of-type(2n+1)
     font-size: 0.6em;
     color: #202020;
     margin: 10px;
+}
+
+
+/* ? */
+#plcList
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 1px solid #e2e2e2;
+    width: 100%;
+    border-radius: 3px;
+}
+
+#plcList th
+{
+    border: 1px solid #e2e2e2;
+    padding: 1px 5px;
+}
+
+#plcList tr
+{
+}
+
+#plcList td
+{
+    border: 1px solid #e2e2e2;
+    padding: 1px 5px;
 }
