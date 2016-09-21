@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using vlabver01.Context;
 using vlabver01.Models;
 using vlabver01.ViewModels;
+using System.IO;
+using EasyModbus;
+
 
 namespace vlabver01.Controllers
 {
@@ -28,14 +31,26 @@ namespace vlabver01.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddPLC([Bind(Include = "Name, Description, IPAddress, Port")]PLC plc)
+        public ActionResult AddPLC([Bind(Include = "Name, Description, IPAddress, Port")]PLC plc, HttpPostedFileBase img)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
+
+                    if (img != null && img.ContentLength > 0)
+                    {
+                        var fileName = Path.GetFileName(img.FileName);
+                        var path = Path.Combine(Server.MapPath("~/App_Data/imgs"), fileName);
+                        img.SaveAs(path);
+                    }
+
+
                     db.PLC.Add(plc);
                     db.SaveChanges();
+
+                   
+
                     return RedirectToAction("Main");
                 }
             }
@@ -73,6 +88,14 @@ namespace vlabver01.Controllers
             return RedirectToAction("Main");
         }
 
+        
+        public ActionResult Connect(int id)
+        {
+            PLC plc = db.PLC.Find(id);
+
+
+            return View(plc);
+        }
 
     }
 }

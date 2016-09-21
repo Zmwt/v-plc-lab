@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="container" id="pageContainer">
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,11 +31,11 @@
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+        <div class="container body-content" role="main">
             @RenderBody()
         </div>
     </div>
-    <footer>
+    <footer role="contentinfo">
         <p>&copy; Ziemowit Niezgoda, @DateTime.Now.Year</p>
     </footer>
 

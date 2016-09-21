@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using EasyModbus;
+
 
 namespace vlabver01.Models
 {
@@ -17,6 +19,27 @@ namespace vlabver01.Models
         public string Description { get; set; }
         public string IPAddress { get; set; }
         public int Port { get; set; }
+
+
+        public void Connect()
+        {
+            ModbusClient client = new ModbusClient(IPAddress, Port);
+            client.Connect();
+
+
+            client.Disconnect();
+        }
+
+        public bool[] Read()
+        {
+            ModbusClient client = new ModbusClient(IPAddress, Port);
+            client.Connect();
+            var coils = client.ReadCoils(0, 10);
+            client.Disconnect();
+
+            return coils;
+        }
+
 
     }
 }

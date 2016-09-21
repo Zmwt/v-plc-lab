@@ -19,8 +19,8 @@
         </div>
 
         <div id="chatControls">
-            <input type="text" id="chatMsg" placeholder="Wpisz wiadomość.." />
-            <input type="button" id="chatBtn" value="Wyślij" />
+            <input type="text" id="chatMsg" placeholder="Wpisz wiadomość.." role="textbox" aria-label="Wpisz wiadomość" />
+            <input type="submit" id="chatBtn" value="Wyślij" role="button" aria-label="Wyślij" />
         </div>
 
 
@@ -48,7 +48,11 @@
                 Port
             </th>
             <th>
+                Usuń
                 <!-- tu jest del button -->
+            </th>
+            <th>
+                Połącz
             </th>
         </tr>
 
@@ -69,6 +73,9 @@
                 </td>
                 <td>
                     @Html.ActionLink("Usuń", "DeletePLC", new { id = item.Id }, new { @class = "btn btn-warning"})
+                </td>
+                <td>
+                    @Html.ActionLink("Połącz", "Connect", new { id = item.Id }, new { @class = "btn btn-info" })
                 </td>
             </tr>
         }

@@ -1,7 +1,8 @@
 ﻿@model vlabver01.Models.ExternalLoginListViewModel
 @using Microsoft.Owin.Security
 
-<h4>Logowanie za pomocą konta Google lub Facebook.</h4>
+<h4>Logowanie przy pomocy konta zewnętrznego</h4>
+@*Logowanie za pomocą konta Google, Facebook, Twitter lub Microsoft*@
 <hr />
 @{
     var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();

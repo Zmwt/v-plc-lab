@@ -1,11 +1,11 @@
 ﻿@model vlabver01.Models.PLC
 
 @{
-    ViewBag.Title = "Usuń PLC";
+    ViewBag.Title = "Połączenie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Na pewno usunąć ten PLC z bazy?</h3>
+<br />
 <div>
     <dl class="dl-horizontal">
         <dt>
@@ -17,7 +17,7 @@
         </dd>
 
         <dt>
-            Opis
+            @Html.DisplayNameFor(model => model.Description)
         </dt>
 
         <dd>
@@ -25,7 +25,7 @@
         </dd>
 
         <dt>
-            Adres IP
+            @Html.DisplayNameFor(model => model.IPAddress)
         </dt>
 
         <dd>
@@ -33,7 +33,7 @@
         </dd>
 
         <dt>
-            Port
+            @Html.DisplayNameFor(model => model.Port)
         </dt>
 
         <dd>
@@ -41,14 +41,19 @@
         </dd>
 
     </dl>
+    @* connect button i costam jeszcze jakies opcje ustawianie jakie inputy czytac itd ... *@
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Usuń" class="btn btn-warning" />
-            |
-            @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-primary" })
-        </div>
+    @*
+    @{
+        var coils = Model.Read();
     }
+
+    @foreach (var coil in coils)
+    {
+        <p>@coil</p>
+    }
+    *@
+
+
+
 </div>

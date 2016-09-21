@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.Title.</h2>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-7">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
@@ -16,6 +16,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
                     @Html.LabelFor(m => m.Username, new { @class = "col-md-2 control-label" })
+                    @*Html.Label("Login", new { @class = "col-md-2 control-label" })*@
                     <div class="col-md-10">
                         @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
                         @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
@@ -28,6 +29,7 @@
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                @*
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
@@ -36,13 +38,20 @@
                         </div>
                     </div>
                 </div>
+                *@
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Login" class="btn btn-default" />
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Rejestracja nowego użytkownika", "Register")
+                    @Html.Label("Rejestracja nowego użytkownika")
+                    @*Html.ActionLink("Rejestracja nowego użytkownika", "Register")*@
+                    
+                </p>
+                <hr />
+                <p>
+                    @Html.ActionLink("Rejestracja", "Register", null, new { @class = "btn btn-primary col-md-offset-2" })
                 </p>
                 @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
@@ -51,7 +60,7 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-5">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
