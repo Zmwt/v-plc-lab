@@ -115,6 +115,13 @@
 
             con.start().done(function () {
 
+                
+                $("#chatMsg").keyup(function (e) {
+                    if (e.keyCode == 13) {
+                        $("#chatBtn").click();
+                    }
+                });
+
                 $('#chatBtn').click(function () {
                     hub.invoke('send', $('#chatMsg').val());
                     $('#chatMsg').val("");
@@ -127,11 +134,8 @@
                         $('#chatBtn').prop('disabled', false);
                         $('#chatBtn').removeClass('btn-inactive');
                     }, 2000);
-
-
-
-
                 });
+
             });
 
 
