@@ -41,8 +41,10 @@ namespace vlabver01.Controllers
                     if (img != null && img.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(img.FileName);
-                        var path = Path.Combine(Server.MapPath("~/App_Data/imgs"), fileName);
+                        var path = Path.Combine(Server.MapPath("~/Content/plcimg/" + plc.Name + "/"),  fileName);
+                        Directory.CreateDirectory(Server.MapPath("~/Content/plcimg/" + plc.Name));
                         img.SaveAs(path);
+                        plc.ImgPath = path;
                     }
 
 
@@ -67,6 +69,16 @@ namespace vlabver01.Controllers
         {
             PLC plc = db.PLC.Find(id);
             
+            if (plc.ImgPath != null)
+            {
+                try
+                {
+                    System.IO.File.Delete(plc.ImgPath);
+                    Directory.Delete(Server.MapPath("~/Content/plcimg/" + plc.Name));
+                }
+                catch { }
+            }
+
             return View(plc);
         }
 

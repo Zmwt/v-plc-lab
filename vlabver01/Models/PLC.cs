@@ -19,9 +19,9 @@ namespace vlabver01.Models
         public string Description { get; set; }
         public string IPAddress { get; set; }
         public int Port { get; set; }
+        public string ImgPath { get; set; }
 
-
-        public void Connect()
+        public void Connect() // test
         {
             ModbusClient client = new ModbusClient(IPAddress, Port);
             client.Connect();

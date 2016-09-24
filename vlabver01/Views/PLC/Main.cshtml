@@ -11,6 +11,8 @@
     @Scripts.Render("~/bundles/signalr")
 
 
+
+
     <div id="chat">
         <p id="chatUsersP">Użytkownicy : <span id="chatUsers">-</span></p>
 
@@ -32,7 +34,7 @@
 
 
 
-
+    <!-- to cos powinno wymagac loginu -->
     <table id="plcList">
         <tr>
             <th>
@@ -48,8 +50,11 @@
                 Port
             </th>
             <th>
+                Zdjęcie
+            </th>
+            <th>
                 Usuń
-                <!-- tu jest del button -->
+                <!-- tu jest del button, ktorego za jakis czas tu pewnie nie bedzie. -->
             </th>
             <th>
                 Połącz
@@ -72,6 +77,15 @@
                     @Html.DisplayFor(modelItem => item.Port)
                 </td>
                 <td>
+
+                    @if (item.ImgPath != null)
+                    { 
+                        string image = System.IO.Path.GetFileName(item.ImgPath);
+                        string imagePath = "~/Content/plcimg/" + item.Name + "/" + image;
+                    <img src="@Url.Content(imagePath)" />
+                    }
+                </td>
+                <td>
                     @Html.ActionLink("Usuń", "DeletePLC", new { id = item.Id }, new { @class = "btn btn-warning"})
                 </td>
                 <td>
@@ -83,16 +97,6 @@
 
 
 @Html.ActionLink("Dodaj", "AddPLC", null, new { @class = "btn btn-success" })
-
-
-    @*
-        <div id="plc">
-            <form>
-                <input type="text" id="ip" value="43.20.10.10" />
-                <input type="text" id="port" value="500" />
-            </form>
-        </div>
-    *@
 
 
 
@@ -126,7 +130,10 @@
                     hub.invoke('send', $('#chatMsg').val());
                     $('#chatMsg').val("");
                     $('#chatMsg').focus();
-                    $('#chatRoom').scrollTop($('#chatRoom')[0].scrollHeight);
+
+                    setTimeout(function () {
+                        $('#chatRoom').scrollTop($('#chatRoom')[0].scrollHeight);
+                    }, 300);
 
                     $('#chatBtn').prop('disabled', true);
                     $('#chatBtn').addClass('btn-inactive');
@@ -137,6 +144,8 @@
                 });
 
             });
+
+
 
 
 

@@ -1,9 +1,17 @@
 ﻿@model vlabver01.Models.PLC
 
+
 @{
     ViewBag.Title = "Połączenie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+
+@{
+    string image = System.IO.Path.GetFileName(Model.ImgPath);
+    string imagePath = "~/Content/plcimg/" + Model.Name + "/" + image;
+}
+
 
 <br />
 <div>
@@ -40,10 +48,18 @@
             @Html.DisplayFor(model => model.Port)
         </dd>
 
-    </dl>
-    @* connect button i costam jeszcze jakies opcje ustawianie jakie inputy czytac itd ... *@
+        <dt>
+            Zdjęcie
+        </dt>
 
-    @*
+        <dd>
+            <img src="@Url.Content(imagePath)" alt="@Model.Name" />
+        </dd>
+
+    </dl>
+    
+         @* connect button i costam jeszcze jakies opcje ustawianie jakie inputy czytac itd ... *@
+         @*
     @{
         var coils = Model.Read();
     }
