@@ -82,7 +82,7 @@
                     { 
                         string image = System.IO.Path.GetFileName(item.ImgPath);
                         string imagePath = "~/Content/plcimg/" + item.Name + "/" + image;
-                    <img src="@Url.Content(imagePath)" />
+                    <img src="@Url.Content(imagePath)" alt="@item.Name" />
                     }
                 </td>
                 <td>

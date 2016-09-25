@@ -7,10 +7,6 @@
 }
 
 
-@{
-    string image = System.IO.Path.GetFileName(Model.ImgPath);
-    string imagePath = "~/Content/plcimg/" + Model.Name + "/" + image;
-}
 
 
 <br />
@@ -53,7 +49,18 @@
         </dt>
 
         <dd>
-            <img src="@Url.Content(imagePath)" alt="@Model.Name" />
+
+            @if (Model.ImgPath != null)
+            {
+                string image = System.IO.Path.GetFileName(Model.ImgPath);
+                string imagePath = "~/Content/plcimg/" + Model.Name + "/" + image;
+                <img src="@Url.Content(imagePath)" alt="@Model.Name" />
+            }
+            else
+            {
+                <span>brak zdjęcia</span>
+            }
+
         </dd>
 
     </dl>
