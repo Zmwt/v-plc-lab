@@ -6,7 +6,6 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using EasyModbus;
 
-
 namespace vlabver01.Models
 {
     public class PLC
@@ -17,6 +16,7 @@ namespace vlabver01.Models
 
         public string Name { get; set; }
         public string Description { get; set; }
+        [RegularExpression(@"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$", ErrorMessage = "Niepoprawny adres IP")]
         public string IPAddress { get; set; }
         public int Port { get; set; }
         public string ImgPath { get; set; }
