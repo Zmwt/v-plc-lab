@@ -113,6 +113,14 @@
             });
 
             hub.on('sendMsg', function (msg) {
+                //if (msg = 'm)')
+                //{
+                //    msg = msg.replace(/m\)/g, '<img src="/Content/emotes/sml1.png" alt=":)" />');
+                //}
+                //else
+                //{
+                msg = msg.replace(new RegExp("(\\\:\\\) )|( \\\:\\\)$)|(^\\\:\\\)$)", "gm"), '<img src="/Content/emotes/sml1.png" alt=":)" />');
+                //}
                 $('#chatRoom').append('<div>' + msg + '</div>');
             });
 

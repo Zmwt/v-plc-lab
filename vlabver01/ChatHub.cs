@@ -48,6 +48,12 @@ namespace vlabver01
             Clients.All.userCount(licz);
             return base.OnConnected();
         }
+        public override Task OnReconnected()
+        {
+            licz += 1;
+            Clients.All.userCount(licz);
+            return base.OnReconnected();
+        }
 
         public override Task OnDisconnected(bool stopCalled)
         {
