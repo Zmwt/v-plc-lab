@@ -339,9 +339,9 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PLC\Main.cshtml" />
     <Content Include="Views\PLC\AddPLC.cshtml" />
-    <Content Include="Views\PLC\_PLCCreatePartial.cshtml" />
     <Content Include="Views\PLC\DeletePLC.cshtml" />
     <Content Include="Views\PLC\Connect.cshtml" />
+    <Content Include="Views\PLC\Read.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

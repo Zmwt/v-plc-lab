@@ -1,0 +1,113 @@
+﻿@model vlabver01.Models.PLC
+
+
+@{
+    ViewBag.Title = "Odczyt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br />
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            Nazwa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Opis
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            Adres IP
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IPAddress)
+        </dd>
+
+        <dt>
+            Port
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Port)
+        </dd>
+
+        <dt>
+            Zdjęcie
+        </dt>
+
+        <dd>
+
+            @if (Model.ImgPath != null)
+            {
+                string image = System.IO.Path.GetFileName(Model.ImgPath);
+                string imagePath = "~/Content/plcimg/" + Model.Name + "/" + image;
+                <img src="@Url.Content(imagePath)" alt="@Model.Name" />
+            }
+            else
+            {
+                <span>brak zdjęcia</span>
+            }
+
+        </dd>
+
+    </dl>
+
+    @* connect button i costam jeszcze jakies opcje ustawianie jakie inputy czytac itd ... *@
+    @*
+        @{
+            var coils = Model.Read();
+        }
+
+        @foreach (var coil in coils)
+        {
+            <p>@coil</p>
+        }
+    *@
+
+    <hr />
+
+    @* // tu trzeba zrobic form
+        <input type="text" name="startingAddress" />
+        <input type="text" name="quantity" />
+
+        @Html.ActionLink("odczyt", "Connect", "PLCController", new { startingAddress = 0, quantity = 0 }, new { @class = "btn btn-primary" })
+    *@
+
+    @*using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
+        @Html.AntiForgeryToken()
+    *@
+
+    @* test *@
+    <p>@ViewBag.StartingAddress</p>
+    <p>@ViewBag.Quantity</p>
+
+
+
+
+    
+    @for (var i = 0; i > ViewBag.Quantity; i++)
+    {
+        <p>
+            <span>Adres @i</span> : <span>@ViewBag.Read[i]</span>
+        </p>
+    }
+
+    <hr />
+    @Html.ActionLink("Powrót", "Connect", new { id = Model.Id }, new { @class = "btn btn-default" })
+
+
+
+</div>

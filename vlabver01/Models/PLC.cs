@@ -30,14 +30,38 @@ namespace vlabver01.Models
             client.Disconnect();
         }
 
-        public bool[] Read()
+
+        /*
+        // read backup
+        public bool[] Read(int startingAddress, int quantity)
         {
             ModbusClient client = new ModbusClient(IPAddress, Port);
             client.Connect();
-            var coils = client.ReadCoils(0, 10);
+            var val = client.ReadCoils(startingAddress, quantity);
             client.Disconnect();
 
-            return coils;
+            return val;
+        }
+        */
+
+        public bool[] Read(int startingAddress, int quantity)
+        {
+            bool[] val = new bool[quantity];
+            try
+            {
+                ModbusClient client = new ModbusClient(IPAddress, Port);
+
+                client.Connect();
+                val = client.ReadCoils(startingAddress, quantity);
+                client.Disconnect();
+            }
+            catch
+            {
+
+            }
+            
+
+            return val;
         }
 
 

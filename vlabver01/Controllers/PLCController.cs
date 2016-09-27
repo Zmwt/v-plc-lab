@@ -105,7 +105,21 @@ namespace vlabver01.Controllers
         {
             PLC plc = db.PLC.Find(id);
 
+            return View(plc);
+        }
 
+
+        // readcoils
+        //[Route("PLC/Read/{id}")]
+        [HttpPost]
+        public ActionResult Read(int id, int startingAddress, int quantity)
+        {
+            PLC plc = db.PLC.Find(id);
+
+            ViewBag.Read = plc.Read(startingAddress, quantity);
+            ViewBag.StartingAddress = startingAddress;
+            ViewBag.Quantity = quantity;
+           
             return View(plc);
         }
 
