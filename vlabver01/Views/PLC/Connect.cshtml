@@ -13,7 +13,7 @@
 <div>
     <dl class="dl-horizontal">
         <dt>
-            Nazwa
+            @Html.LabelFor(model => model.Name)
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            Opis
+            @Html.LabelFor(model => model.Description)
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            Adres IP
+            @Html.LabelFor(model => model.IPAddress)
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            Port
+            @Html.LabelFor(model => model.Port)
         </dt>
 
         <dd>
@@ -101,7 +101,8 @@
             <br />
     *@
 
-
+    
+    <p> test read </p>
 
     @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
     {
@@ -109,6 +110,37 @@
 
         <input type="hidden" name="id" value="@Model.Id" />
 
+        <div class="form-group">
+            @Html.Label("Adres początkowy", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Ilość", htmlAttributes: new { @class = "control-label col-md-12" })
+            <div class="col-md-12">
+                @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-12">
+                <input type="submit" value="Odczyt" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+
+
+
+    <p> read Q </p>
+
+    @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
+    {
+        @Html.AntiForgeryToken()
+        
+        <input type="hidden" name="id" value="@Model.Id" />
+        <input type="hidden" name="functionN" value="1" />
         <div class="form-group">
             @Html.Label("Adres początkowy", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-12">

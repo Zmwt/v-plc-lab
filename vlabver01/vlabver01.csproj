@@ -261,6 +261,7 @@
     <Compile Include="Models\PLC.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\PLCReadViewModel.cs" />
     <Compile Include="ViewModels\PLCViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

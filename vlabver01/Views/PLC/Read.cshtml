@@ -13,7 +13,7 @@
 <div>
     <dl class="dl-horizontal">
         <dt>
-            Nazwa
+            @Html.LabelFor(model => model.Name)
         </dt>
 
         <dd>
@@ -21,7 +21,7 @@
         </dd>
 
         <dt>
-            Opis
+            @Html.LabelFor(model => model.Description)
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            Adres IP
+            @Html.LabelFor(model => model.IPAddress)
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            Port
+            @Html.LabelFor(model => model.Port)
         </dt>
 
         <dd>
@@ -90,6 +90,8 @@
         @Html.AntiForgeryToken()
     *@
 
+
+
     @* test *@
     <p>@ViewBag.StartingAddress</p>
     <p>@ViewBag.Quantity</p>
@@ -98,12 +100,28 @@
 
 
     
-    @for (var i = 0; i > ViewBag.Quantity; i++)
+    @for (var i = 0; i < ViewBag.Quantity; i++)
     {
         <p>
             <span>Adres @i</span> : <span>@ViewBag.Read[i]</span>
         </p>
     }
+
+
+    @{
+        if (@ViewBag.FunctionN == 1)
+        {
+            for (int i = 0; i < ViewBag.Quantity; i++)
+            {
+                <p>
+                    <span>Adres @i</span> : <span>@ViewBag.Read[i]</span>
+                </p>
+            }
+
+        }
+
+    }
+
 
     <hr />
     @Html.ActionLink("Powrót", "Connect", new { id = Model.Id }, new { @class = "btn btn-default" })
