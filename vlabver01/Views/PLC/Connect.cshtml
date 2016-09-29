@@ -7,9 +7,8 @@
 }
 
 
-
-
 <br />
+
 <div>
     <dl class="dl-horizontal">
         <dt>
@@ -64,96 +63,44 @@
         </dd>
 
     </dl>
-    
-         @* connect button i costam jeszcze jakies opcje ustawianie jakie inputy czytac itd ... *@
-         @*
-    @{
-        var coils = Model.Read();
-    }
-
-    @foreach (var coil in coils)
-    {
-        <p>@coil</p>
-    }
-    *@
-
+   
     <hr />
 
-    @* // tu trzeba zrobic form
-    <input type="text" name="startingAddress" />
-    <input type="text" name="quantity" />
-
-    @Html.ActionLink("odczyt", "Connect", "PLCController", new { startingAddress = 0, quantity = 0 }, new { @class = "btn btn-primary" })
-    *@
-
-
-    @*
-        <form action="Read" method="post">
-
-
-            <input type="hidden" name="id" value="@Model.Id" />
-
-            <label>start:</label>
-            <input type="text" name="startingAddress" />
-            <br />
-            <label>q:</label>
-            <input type="text" name="quantity" />
-            <br />
-    *@
-
-    
-    <p> test read </p>
-
-    @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
-    {
-        @Html.AntiForgeryToken()
-
-        <input type="hidden" name="id" value="@Model.Id" />
-
-        <div class="form-group">
-            @Html.Label("Adres początkowy", htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-12">
-                @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Ilość", htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-12">
-                @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control" } })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-12">
-                <input type="submit" value="Odczyt" class="btn btn-default" />
-            </div>
-        </div>
-    }
-
-
-
-
-    <p> read Q </p>
+    @*<p>Odczyt</p>*@
+    @Html.Label("Odczyt")
+    <br />
+    <br />
 
     @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
     {
         @Html.AntiForgeryToken()
         
         <input type="hidden" name="id" value="@Model.Id" />
-        <input type="hidden" name="functionN" value="1" />
+        @*<p>Typ adresu</p>*@
+        @Html.Label("Typ adresu")
+        <div class="form-group">
+            
+            <label class="radio-inline"><input type="radio" name="functionN">%Q - Wyjścia</label>
+            <label class="radio-inline"><input type="radio" name="functionN">%I - Wejścia</label>
+            <label class="radio-inline"><input type="radio" name="functionN">%R - Rejestry</label>
+            <label class="radio-inline"><input type="radio" name="functionN">%AI - Wejścia analogowe</label>
+
+        </div>
+
         <div class="form-group">
             @Html.Label("Adres początkowy", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-12">
-                @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control", @Value = "1" } })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Ilość", htmlAttributes: new { @class = "control-label col-md-12" })
+            @Html.Label("Ilość adresów do odczytu", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-12">
-                @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control", @Value = "1" } })
             </div>
         </div>
+
         <div class="form-group">
             <div class="col-md-12">
                 <input type="submit" value="Odczyt" class="btn btn-default" />

@@ -1,4 +1,4 @@
-﻿@model vlabver01.Models.PLC
+﻿@model vlabver01.ViewModels.PLCReadViewModel
 
 
 @{
@@ -13,35 +13,35 @@
 <div>
     <dl class="dl-horizontal">
         <dt>
-            @Html.LabelFor(model => model.Name)
+            @Html.LabelFor(model => model.PLC.Name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.PLC.Name)
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.Description)
+            @Html.LabelFor(model => model.PLC.Description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Description)
+            @Html.DisplayFor(model => model.PLC.Description)
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.IPAddress)
+            @Html.LabelFor(model => model.PLC.IPAddress)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IPAddress)
+            @Html.DisplayFor(model => model.PLC.IPAddress)
         </dd>
 
         <dt>
-            @Html.LabelFor(model => model.Port)
+            @Html.LabelFor(model => model.PLC.Port)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Port)
+            @Html.DisplayFor(model => model.PLC.Port)
         </dd>
 
         <dt>
@@ -50,11 +50,11 @@
 
         <dd>
 
-            @if (Model.ImgPath != null)
+            @if (Model.PLC.ImgPath != null)
             {
-                string image = System.IO.Path.GetFileName(Model.ImgPath);
-                string imagePath = "~/Content/plcimg/" + Model.Name + "/" + image;
-                <img src="@Url.Content(imagePath)" alt="@Model.Name" />
+                string image = System.IO.Path.GetFileName(Model.PLC.ImgPath);
+                string imagePath = "~/Content/plcimg/" + Model.PLC.Name + "/" + image;
+                <img src="@Url.Content(imagePath)" alt="@Model.PLC.Name" />
             }
             else
             {
@@ -65,66 +65,59 @@
 
     </dl>
 
-    @* connect button i costam jeszcze jakies opcje ustawianie jakie inputy czytac itd ... *@
-    @*
-        @{
-            var coils = Model.Read();
-        }
-
-        @foreach (var coil in coils)
-        {
-            <p>@coil</p>
-        }
-    *@
 
     <hr />
 
-    @* // tu trzeba zrobic form
-        <input type="text" name="startingAddress" />
-        <input type="text" name="quantity" />
-
-        @Html.ActionLink("odczyt", "Connect", "PLCController", new { startingAddress = 0, quantity = 0 }, new { @class = "btn btn-primary" })
-    *@
-
-    @*using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
-        @Html.AntiForgeryToken()
-    *@
-
-
 
     @* test *@
-    <p>@ViewBag.StartingAddress</p>
-    <p>@ViewBag.Quantity</p>
-
-
+    <p>starting address @Model.PLCRead.StartingAddress</p>
+    <p>quantity @Model.PLCRead.Quantity</p>
+    <p>function n @Model.PLCRead.FunctionN</p>
 
 
     
-    @for (var i = 0; i < ViewBag.Quantity; i++)
+    @for (var i = 0; i < Model.PLCRead.Quantity; i++)
     {
         <p>
-            <span>Adres @i</span> : <span>@ViewBag.Read[i]</span>
+            @{ 
+                string prefix = "";
+                switch (Model.PLCRead.FunctionN)
+                {
+                    case 1:
+                        {
+                            prefix = "Q";
+                            break;
+                        }
+                    case 2:
+                        {
+                            prefix = "I";
+                            break;
+                        }
+                    case 3:
+                        {
+                            prefix = "R";
+                            break;
+                        }
+                    case 4:
+                        {
+                            prefix = "AI";
+                            break;
+                        }
+                    default:
+                        break;
+                }
+            }
+
+            <span>@prefix @(i+Model.PLCRead.StartingAddress)</span> : <span>@Model.PLCRead.Val[i]</span>
         </p>
     }
 
 
-    @{
-        if (@ViewBag.FunctionN == 1)
-        {
-            for (int i = 0; i < ViewBag.Quantity; i++)
-            {
-                <p>
-                    <span>Adres @i</span> : <span>@ViewBag.Read[i]</span>
-                </p>
-            }
-
-        }
-
-    }
+   
 
 
     <hr />
-    @Html.ActionLink("Powrót", "Connect", new { id = Model.Id }, new { @class = "btn btn-default" })
+    @Html.ActionLink("Powrót", "Connect", new { id = Model.PLC.Id }, new { @class = "btn btn-default" })
 
 
 

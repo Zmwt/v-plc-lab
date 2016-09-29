@@ -15,6 +15,7 @@ namespace vlabver01.Models
         public int Id { get; set; }
 
         [Display(Name = "Nazwa")]
+        //[Index(IsUnique = true)]
         public string Name { get; set; }
 
         [Display(Name = "Opis")]

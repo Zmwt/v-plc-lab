@@ -114,14 +114,52 @@ namespace vlabver01.Controllers
         [HttpPost]
         public ActionResult Read(int id, int startingAddress, int quantity, int functionN)
         {
-            PLC plc = db.PLC.Find(id);
+            PLCReadViewModel vm = new PLCReadViewModel();
+            vm.PLC = db.PLC.Find(id);
+            //PLC plc = db.PLC.Find(id);
+            vm.PLCRead = new PLCRead();
+            //PLCRead plcRead = new PLCRead();
+            vm.PLCRead.StartingAddress = startingAddress;
+            vm.PLCRead.Quantity = quantity;
+            vm.PLCRead.FunctionN = functionN;
+            
+            switch (vm.PLCRead.FunctionN)
+            {
+                case 1:
+                    {
+                        vm.PLCRead.Val = vm.PLC.ReadQ(startingAddress, quantity);
+                        break;
+                    }
 
-            ViewBag.Read = plc.Read(startingAddress, quantity);
-            ViewBag.StartingAddress = startingAddress;
-            ViewBag.Quantity = quantity;
-            ViewBag.FunctionN = functionN;
-           
-            return View(plc);
+                case 2:
+                    {
+                        vm.PLCRead.Val = vm.PLC.ReadI(startingAddress, quantity);
+                        break;
+                    }
+
+                case 3:
+                    {
+                        vm.PLCRead.Val = vm.PLC.ReadR(startingAddress, quantity);
+                        break;
+                    }
+
+                case 4:
+                    {
+                        vm.PLCRead.Val = vm.PLC.ReadAI(startingAddress, quantity);
+                        break;
+                    }
+
+
+                default:
+                    break;
+            }
+
+            //ViewBag.Read = plc.Read(startingAddress, quantity);
+            //ViewBag.StartingAddress = startingAddress;
+            //ViewBag.Quantity = quantity;
+            //ViewBag.FunctionN = functionN;
+
+            return View(vm);
         }
 
     }
