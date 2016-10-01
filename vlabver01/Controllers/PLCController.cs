@@ -41,12 +41,24 @@ namespace vlabver01.Controllers
                     if (img != null && img.ContentLength > 0)
                     {
                         var fileName = Path.GetFileName(img.FileName);
+
+                        var fileTypes = new[] { "png", "gif", "jpg", "jpeg", "bmp" };
+                        var fileExt = System.IO.Path.GetExtension(fileName).Substring(1);
+                        if (!fileTypes.Contains(fileExt))
+                        {
+                            ModelState.AddModelError("", "Przyjmowane są tylko pliki z rozszerzeniami : .png, .gif, .jpg, .jpeg, .bmp");
+                            return View(plc);
+                        }
+
+                       
                         var path = Path.Combine(Server.MapPath("~/Content/plcimg/" + plc.Name + "/"),  fileName);
                         Directory.CreateDirectory(Server.MapPath("~/Content/plcimg/" + plc.Name));
                         img.SaveAs(path);
                         plc.ImgPath = path;
                     }
 
+
+                    
 
                     db.PLC.Add(plc);
                     db.SaveChanges();
@@ -118,6 +130,8 @@ namespace vlabver01.Controllers
             vm.PLC = db.PLC.Find(id);
             //PLC plc = db.PLC.Find(id);
             vm.PLCRead = new PLCRead();
+
+            
             //PLCRead plcRead = new PLCRead();
             vm.PLCRead.StartingAddress = startingAddress;
             vm.PLCRead.Quantity = quantity;
