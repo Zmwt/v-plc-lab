@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace vlabver01
+namespace PLCLAB
 {
     public class FilterConfig
     {

@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using vlabver01.Models;
+using PLCLAB.Models;
 
-namespace vlabver01.Controllers
+namespace PLCLAB.Controllers
 {
     [Authorize]
     public class AccountController : Controller

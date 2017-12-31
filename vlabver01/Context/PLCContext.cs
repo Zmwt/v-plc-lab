@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using vlabver01.Models;
+using PLCLAB.Models;
 
-namespace vlabver01.Context
+namespace PLCLAB.Context
 {
     public class PLCContext : DbContext
     {

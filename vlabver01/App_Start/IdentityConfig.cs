@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using vlabver01.Models;
+using PLCLAB.Models;
 
-namespace vlabver01
+namespace PLCLAB
 {
     public class EmailService : IIdentityMessageService
     {

@@ -5,11 +5,11 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using vlabver01.Models;
+using PLCLAB.Models;
 using Microsoft.Owin.Security.Twitter;
 using Microsoft.Owin.Security;
 
-namespace vlabver01
+namespace PLCLAB
 {
     public partial class Startup
     {
@@ -76,8 +76,8 @@ namespace vlabver01
             });
 
             app.UseFacebookAuthentication(
-               appId: "207370163011802",
-               appSecret: "3625b739260b97b4fef093d03e139dfb");
+               appId: "1504399223000959",
+               appSecret: "bf3cd095a6e1f055f49c36b222f567ad");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

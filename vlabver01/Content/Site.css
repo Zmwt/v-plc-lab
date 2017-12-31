@@ -1,20 +1,24 @@
 ﻿@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext';
 
 /* html, body */
-html, body
-{
+html, body {
     font-family: 'Open Sans', sans-serif;
     font-size: 1.2em;
+    color: #c2c2c2;
 }
 
 body
 {
-    padding-top : 50px;
+    /* padding-top : 50px; */
     background : url(back.jpg) no-repeat fixed center;
     display: flex;
     height: 100vh;
     flex-direction: column;
 }
+
+
+
+
 
 /* validation fix */
 .field-validation-valid
@@ -28,9 +32,13 @@ body
 
 
 
-/* flex - footer */
-.container#pageContainer
+#navMain
 {
+    margin-bottom: 20px;
+}
+
+/* flex - footer */
+.body-content {
     flex: 1;
 }
 
@@ -38,13 +46,14 @@ footer
 {
     background : #808080;
     opacity: 0.5;
+    margin-top: 20px;
 }
 
-footer > p
+footer p
 {
     opacity: 1;
     font-size: 0.5em;
-
+    margin: 8px 0px 8px 5px;
 }
 
 /* plc chat */
@@ -136,4 +145,10 @@ div#chatRoom > div:nth-of-type(2n+1)
 {
     border: 1px solid #e2e2e2;
     padding: 1px 5px;
+}
+
+
+#socialLoginList button
+{
+    margin: 4px;
 }

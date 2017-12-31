@@ -4,14 +4,14 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using vlabver01.Context;
-using vlabver01.Models;
-using vlabver01.ViewModels;
+using PLCLAB.Context;
+using PLCLAB.Models;
+using PLCLAB.ViewModels;
 using System.IO;
 using EasyModbus;
 
 
-namespace vlabver01.Controllers
+namespace PLCLAB.Controllers
 {
     public class PLCController : Controller
     {

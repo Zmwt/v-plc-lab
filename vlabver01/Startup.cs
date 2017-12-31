@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(vlabver01.Startup))]
-namespace vlabver01
+[assembly: OwinStartupAttribute(typeof(PLCLAB.Startup))]
+namespace PLCLAB
 {
     public partial class Startup
     {

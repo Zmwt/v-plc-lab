@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vlabver01", "vlabver01\vlabver01.csproj", "{AF7C97AC-7B37-4CE5-BBB8-17E1C7BF0DA9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vlabver01.Tests", "vlabver01.Tests\vlabver01.Tests.csproj", "{F6A988E7-0172-4441-9942-E3E52D66C089}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PLC LAB", "vlabver01\PLC LAB.csproj", "{AF7C97AC-7B37-4CE5-BBB8-17E1C7BF0DA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +15,11 @@ Global
 		{AF7C97AC-7B37-4CE5-BBB8-17E1C7BF0DA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF7C97AC-7B37-4CE5-BBB8-17E1C7BF0DA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF7C97AC-7B37-4CE5-BBB8-17E1C7BF0DA9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F6A988E7-0172-4441-9942-E3E52D66C089}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6A988E7-0172-4441-9942-E3E52D66C089}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6A988E7-0172-4441-9942-E3E52D66C089}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F6A988E7-0172-4441-9942-E3E52D66C089}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {549BED54-34B0-47C5-91CE-DEF6AC6FB528}
 	EndGlobalSection
 EndGlobal

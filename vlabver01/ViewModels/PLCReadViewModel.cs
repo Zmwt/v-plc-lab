@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace vlabver01.ViewModels
+namespace PLCLAB.ViewModels
 {
     public class PLCReadViewModel
     {

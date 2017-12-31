@@ -1,4 +1,4 @@
-namespace vlabver01.Migrations
+namespace PLCLAB.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

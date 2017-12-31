@@ -92,9 +92,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\vlabver01\vlabver01.csproj">
+    <ProjectReference Include="..\vlabver01\PLC LAB.csproj">
       <Project>{AF7C97AC-7B37-4CE5-BBB8-17E1C7BF0DA9}</Project>
-      <Name>vlabver01</Name>
+      <Name>PLC LAB</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

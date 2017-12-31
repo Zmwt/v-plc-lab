@@ -1,19 +1,19 @@
-namespace vlabver01.Migrations
+namespace PLCLAB.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<vlabver01.Context.PLCContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<PLCLAB.Context.PLCContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "vlabver01.Context.PLCContext";
+            ContextKey = "PLCLAB.Context.PLCContext";
         }
 
-        protected override void Seed(vlabver01.Context.PLCContext context)
+        protected override void Seed(PLCLAB.Context.PLCContext context)
         {
             //  This method will be called after migrating to the latest version.
 

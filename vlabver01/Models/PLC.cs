@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using EasyModbus;
 
-namespace vlabver01.Models
+namespace PLCLAB.Models
 {
     public class PLC
     {
