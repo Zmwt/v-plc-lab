@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace PLCLAB
 {
     [HubName("Chat")]
-    /* [Authorize] */
+    [Authorize]
     public class ChatHub : Hub
     {
         /*

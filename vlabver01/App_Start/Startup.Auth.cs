@@ -60,8 +60,8 @@ namespace PLCLAB
 
             app.UseTwitterAuthentication(new TwitterAuthenticationOptions
             {
-                ConsumerKey = "CrEotVsuCEWQSMoKcn3GGGb7y",
-                ConsumerSecret = "vrbmX72CkNrLT6BxX6olpiLaULzLqqVFbINYqaUkmTolu2N7pm",
+                ConsumerKey = "J8TJXs43aBMtYWigYBHOdhutc",
+                ConsumerSecret = "SzFpootvlqmu6sWnx1vKc0V84kxyJRHNT4GjreXL2mHLReyXOF",
                 BackchannelCertificateValidator = new CertificateSubjectKeyIdentifierValidator(new[]
                 {
                     "A5EF0B11CEC04103A34A659048B21CE0572D7D47", // VeriSign Class 3 Secure Server CA - G2
@@ -75,10 +75,11 @@ namespace PLCLAB
                 })
             });
 
+            /*
             app.UseFacebookAuthentication(
                appId: "1504399223000959",
                appSecret: "bf3cd095a6e1f055f49c36b222f567ad");
-
+               */
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
                 ClientId = "812295516109-jshjhbq4r09l2ic43f11r4r00vm70jlg.apps.googleusercontent.com",

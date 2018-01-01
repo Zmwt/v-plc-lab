@@ -63,7 +63,7 @@
         </dd>
 
     </dl>
-   
+
     <hr />
 
     @*<p>Odczyt</p>*@
@@ -74,12 +74,12 @@
     @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
     {
         @Html.AntiForgeryToken()
-        
+
         <input type="hidden" name="id" value="@Model.Id" />
         @*<p>Typ adresu</p>*@
         @Html.Label("Typ adresu")
         <div class="form-group">
-            
+
             <label class="radio-inline"><input type="radio" name="functionN" value="1" checked>%Q - Wyjścia</label>
             <label class="radio-inline"><input type="radio" name="functionN" value="2">%I - Wejścia</label>
             <label class="radio-inline"><input type="radio" name="functionN" value="3">%R - Rejestry</label>
@@ -107,5 +107,7 @@
             </div>
         </div>
     }
+
+    @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-info" })
 
 </div>

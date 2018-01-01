@@ -14,6 +14,11 @@ namespace PLCLAB
                         "~/Scripts/jquery.validate*",
                         "~/Scripts/messages_pl"));
 
+            /*
+            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
+                        "~/Scripts/popper.js"));
+            */
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
@@ -23,7 +28,7 @@ namespace PLCLAB
                       "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
-                "~/Scripts/jquery.signalr-2.2.1.js",
+                "~/Scripts/jquery.signalR-{version}.js",
                 "~/signalr/hubs"
                 ));
         }

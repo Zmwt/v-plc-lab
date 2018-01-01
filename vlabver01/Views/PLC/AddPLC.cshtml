@@ -61,9 +61,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Powrót", "Main")
-</div>
+    <div>
+        @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-info" })
+    </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
