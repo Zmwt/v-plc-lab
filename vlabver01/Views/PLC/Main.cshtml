@@ -50,42 +50,43 @@
                 Zdjęcie
             </th>
             <th>
-                Usuń
-                <!-- tu jest del button, ktorego za jakis czas tu pewnie nie bedzie. -->
+                Połącz
             </th>
             <th>
-                Połącz
+                Usuń
+                <!-- tu jest del button, ktorego za jakis czas tu pewnie nie bedzie. -->
             </th>
         </tr>
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IPAddress)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Port)
-                </td>
-                <td>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IPAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Port)
+            </td>
+            <td>
 
-                    @if (item.ImgPath != null)
-                    { 
-                        string image = System.IO.Path.GetFileName(item.ImgPath);
-                        string imagePath = "~/Content/plcimg/" + item.Name + "/" + image;
-                    <img src="@Url.Content(imagePath)" alt="@item.Name" />
-                    }
-                </td>
-                <td>
-                    @Html.ActionLink("Usuń", "DeletePLC", new { id = item.Id }, new { @class = "btn btn-warning"})
-                </td>
-                <td>
-                    @Html.ActionLink("Połącz", "Connect", new { id = item.Id }, new { @class = "btn btn-info" })
-                </td>
-            </tr>
+                @if (item.ImgPath != null)
+        {
+            string image = System.IO.Path.GetFileName(item.ImgPath);
+            string imagePath = "~/Content/plcimg/" + item.Name + "/" + image;
+            <img src="@Url.Content(imagePath)" alt="@item.Name" />
+}
+            </td>
+
+            <td>
+                @Html.ActionLink("Połącz", "Connect", new { id = item.Id }, new { @class = "btn btn-info" })
+            </td>
+            <td>
+                @Html.ActionLink("Usuń", "DeletePLC", new { id = item.Id }, new { @class = "btn btn-warning" })
+            </td>
+        </tr>
         }
     </table>
 
