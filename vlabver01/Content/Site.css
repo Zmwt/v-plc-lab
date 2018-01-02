@@ -147,6 +147,10 @@ div#chatRoom > div:nth-of-type(2n+1)
     padding: 1px 5px;
 }
 
+#plcList img
+{
+    max-width: 300px;
+}
 
 #socialLoginList button
 {
