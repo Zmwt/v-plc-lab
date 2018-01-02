@@ -10,7 +10,7 @@
 <br />
 
 <div>
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal plcInfo">
         <dt>
             @Html.LabelFor(model => model.Name)
         </dt>
@@ -67,8 +67,7 @@
     <hr />
 
     @*<p>Odczyt</p>*@
-    @Html.Label("Odczyt")
-    <br />
+    @Html.Label("Odczyt :")
     <br />
 
     @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
@@ -77,7 +76,7 @@
 
         <input type="hidden" name="id" value="@Model.Id" />
         @*<p>Typ adresu</p>*@
-        @Html.Label("Typ adresu")
+        @Html.Label("Typ adresu do odczytu :")
         <div class="form-group">
 
             <label class="radio-inline"><input type="radio" name="functionN" value="1" checked>%Q - Wyjścia</label>
@@ -88,14 +87,14 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Adres początkowy", htmlAttributes: new { @class = "control-label col-md-12" })
+            @Html.Label("Adres początkowy : ", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-12">
                 @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control", @Value = "1" } })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Ilość adresów do odczytu", htmlAttributes: new { @class = "control-label col-md-12" })
+            @Html.Label("Ilość adresów do odczytu : ", htmlAttributes: new { @class = "control-label col-md-12" })
             <div class="col-md-12">
                 @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control", @Value = "1" } })
             </div>
