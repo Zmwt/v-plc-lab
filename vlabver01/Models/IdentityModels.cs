@@ -30,46 +30,7 @@ namespace PLCLAB.Models
             return new ApplicationDbContext();
         }
 
-        /*
-        public bool Seed(ApplicationDbContext context)
-        {
-            bool success = false;
-
-            ApplicationRoleManager _roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context));
-
-            success = this.CreateRole(_roleManager, "Admin", "Global Access");
-            if (!success == true) return success;
-
-            success = this.CreateRole(_roleManager, "CanEdit", "Edit existing records");
-            if (!success == true) return success;
-
-            success = this.CreateRole(_roleManager, "User", "Restricted to business domain activity");
-            if (!success) return success;
-
-            // Create my debug (testing) objects here
-
-            ApplicationUserManager userManager = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
-
-            ApplicationUser user = new ApplicationUser();
-            PasswordHasher passwordHasher = new PasswordHasher();
-
-            user.UserName = "youremail@testemail.com";
-            user.Email = "youremail@testemail.com";
-
-            IdentityResult result = userManager.Create(user, "Pass@123");
-
-            success = this.AddUserToRole(userManager, user.Id, "Admin");
-            if (!success) return success;
-
-            success = this.AddUserToRole(userManager, user.Id, "CanEdit");
-            if (!success) return success;
-
-            success = this.AddUserToRole(userManager, user.Id, "User");
-            if (!success) return success;
-
-            return success;
-        }
-        */
+       
 
     }
 

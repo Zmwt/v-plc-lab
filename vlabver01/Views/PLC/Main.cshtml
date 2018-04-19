@@ -1,5 +1,4 @@
 ﻿@model List<PLCLAB.Models.PLC>
-@*model PLCLAB.ViewModels.PLCViewModel*@
 
 
     @{
@@ -34,7 +33,7 @@
 
 
 
-    <!-- to cos powinno wymagac loginu -->
+@if (User.Identity.IsAuthenticated) { 
     <table id="plcList">
         <tr>
             <th>
@@ -52,14 +51,16 @@
             <th>
                 Połącz
             </th>
+            @if (User.IsInRole("Admin")){
             <th>
                 Usuń
-                <!-- tu jest del button, ktorego za jakis czas tu pewnie nie bedzie. -->
             </th>
+            }
         </tr>
+        
 
         @foreach (var item in Model)
-        {
+    {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -83,13 +84,15 @@
             <td>
                 @Html.ActionLink("Połącz", "Connect", new { id = item.Id }, new { @class = "btn btn-info" })
             </td>
+            @if (User.IsInRole("Admin")){
             <td>
                 @Html.ActionLink("Usuń", "DeletePLC", new { id = item.Id }, new { @class = "btn btn-warning" })
             </td>
+            }
         </tr>
-        }
+    }
     </table>
-
+}
 
 @Html.ActionLink("Dodaj", "AddPLC", null, new { @class = "btn btn-success" })
 

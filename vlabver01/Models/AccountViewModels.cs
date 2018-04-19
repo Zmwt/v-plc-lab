@@ -87,6 +87,9 @@ namespace PLCLAB.Models
         [Display(Name = "Powtórz hasło")]
         [Compare("Password", ErrorMessage = "Błąd w powtórzeniu hasła.")]
         public string ConfirmPassword { get; set; }
+
+        
+
     }
 
     public class ResetPasswordViewModel
