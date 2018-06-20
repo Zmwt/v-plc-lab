@@ -36,7 +36,7 @@ namespace PLCLAB.Models
             client.Connect();
 
 
-            client.Disconnect();
+            //client.Disconnect();
         }
 
 
