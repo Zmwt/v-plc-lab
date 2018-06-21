@@ -5,50 +5,59 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h3>Na pewno usunąć ten PLC z bazy?</h3>
-<div>
-    <dl class="dl-horizontal">
-        <dt>
-            Nazwa
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+@if (User.IsInRole("Admin"))
+{
+    <h3>Na pewno usunąć ten PLC z bazy?</h3>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                Nazwa
+            </dt>
 
-        <dt>
-            Opis
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                Opis
+            </dt>
 
-        <dt>
-            Adres IP
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.IPAddress)
-        </dd>
+            <dt>
+                Adres IP
+            </dt>
 
-        <dt>
-            Port
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IPAddress)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Port)
-        </dd>
+            <dt>
+                Port
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Port)
+            </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        </dl>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Usuń" class="btn btn-warning" />
-            |
-            @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-primary" })
-        </div>
-    }
-</div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Usuń" class="btn btn-warning" />
+                |
+                @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-primary" })
+            </div>
+        }
+    </div>
+}
+else
+{
+    @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-primary" })
+}

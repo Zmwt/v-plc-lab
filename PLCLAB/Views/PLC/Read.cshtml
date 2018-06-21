@@ -11,7 +11,7 @@
 
 <br />
 <div>
-    <dl class="dl-horizontal">
+    <dl class="dl-horizontal plcInfo">
         <dt>
             @Html.LabelFor(model => model.PLC.Name)
         </dt>
@@ -70,16 +70,17 @@
 
 
     @* test *@
-    <p>starting address @Model.PLCRead.StartingAddress</p>
-    <p>quantity @Model.PLCRead.Quantity</p>
-    <p>function n @Model.PLCRead.FunctionN</p>
+    @*
+        <p>starting address @Model.PLCRead.StartingAddress</p>
+        <p>quantity @Model.PLCRead.Quantity</p>
+        <p>function n @Model.PLCRead.FunctionN</p>
+    *@
 
 
-    
     @for (var i = 0; i < Model.PLCRead.Quantity; i++)
     {
         <p>
-            @{ 
+            @{
                 string prefix = "";
                 switch (Model.PLCRead.FunctionN)
                 {
@@ -108,12 +109,12 @@
                 }
             }
 
-            <span>@prefix @(i+Model.PLCRead.StartingAddress)</span> : <span>@Model.PLCRead.Val[i]</span>
+            <span>@prefix @(i + Model.PLCRead.StartingAddress)</span> : <span>@Model.PLCRead.Val[i]</span>
         </p>
     }
 
 
-   
+
 
 
     <hr />

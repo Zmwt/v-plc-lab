@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@if (User.IsInRole("Admin"))
+{ 
 
-@using (Html.BeginForm("AddPLC", "PLC", FormMethod.Post, new { @enctype = "multipart/form-data" })) 
+using (Html.BeginForm("AddPLC", "PLC", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>PLC</h4>
         <hr />
@@ -61,9 +63,11 @@
     </div>
 }
 
-    <div>
-        @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-info" })
-    </div>
+
+}
+<div>
+    @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-info" })
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

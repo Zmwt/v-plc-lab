@@ -1,0 +1,89 @@
+﻿@{
+    ViewBag.Title = "Zadania";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<p>Ustaw parametry zadania :</p>
+
+
+@using (Html.BeginForm("Set", "Task", FormMethod.Post, null))
+{
+    @Html.AntiForgeryToken()
+
+
+
+    /*
+      args structure :
+        0 - id/name (plc)   // model
+        1 - ip              // model
+        2 - port            // model
+        3 - action type (odczyt : Q I R AI)
+        4 - address-start
+        5 - quantity (of adresses to read)
+        6 - task id         // tym zajmuje sie task controller
+     */
+
+
+    //<input type="hidden" name="id" value="@Model.Id" />
+    //<input type="hidden" name="ip" value="@Model.Ip" />
+    //<input type="hidden" name="port" value="@Model.Port" />
+    <input type="hidden" name="id" value="plc_id_1" />
+    <input type="hidden" name="ip" value="123.123.312.321" />
+    <input type="hidden" name="port" value="502" />
+
+
+    @Html.Label("Typ adresu do odczytu :")
+    <div class="form-group">
+
+        <label class="radio-inline"><input type="radio" name="functionN" value="1" checked>%Q - Wyjścia</label>
+        <label class="radio-inline"><input type="radio" name="functionN" value="2">%I - Wejścia</label>
+        <label class="radio-inline"><input type="radio" name="functionN" value="3">%R - Rejestry</label>
+        <label class="radio-inline"><input type="radio" name="functionN" value="4">%AI - Wejścia analogowe</label>
+
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Adres początkowy : ", htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Ilość adresów do odczytu : ", htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
+        </div>
+    </div>
+
+    // tu trzeba dorobic wszystkie ustawienia taska (zadania) : czas trwania, odstep czasu (minimum 1 minuta), ..? mozna dorobic opis zadania (dolozy sie w task description i moze sie bedzie dalo to pozniej pobrac)
+
+    <div class="form-group">
+        @Html.Label("Czas trwania zadania (w minutach) :", htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            @Html.Editor("duration", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @max = "1440", @step = "1", @Value = "1" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Co jaki okres czasu ma być uruchamiane zadanie (w minutach)", htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            @Html.Editor("interval", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @max = "1440", @step = "1", @Value = "1" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Opóźnienie przed rozpoczęciem zadania (w minutach) (0 = brak opóźnienia)", htmlAttributes: new { @class = "control-label col-md-12" })
+        <div class="col-md-12">
+            @Html.Editor("delay", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @max = "120", @step = "1", @Value = "0" } })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-12">
+            <input type="submit" value="OK" class="btn btn-default" />
+        </div>
+    </div>
+}
