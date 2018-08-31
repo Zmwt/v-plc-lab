@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Win32.TaskScheduler;
+using PLCLAB.Models;
 
 namespace PLCLAB.Controllers
 {
@@ -22,7 +23,14 @@ namespace PLCLAB.Controllers
         [HttpPost]
         public ActionResult Set(FormCollection col)
         {
-            string almostrandom = DateTime.Now.Ticks.ToString();
+            int newTaskId;
+            using (DBEntities PLCConsoleDB = new DBEntities())
+            {
+                newTaskId = PLCConsoleDB.Task.Count() + 1;
+            }
+
+
+            string almostrandom = DateTime.Now.Ticks.ToString(); // debug
             using (TaskService ts = new TaskService())
             {
                 TaskDefinition td = ts.NewTask();
@@ -30,7 +38,7 @@ namespace PLCLAB.Controllers
 
                 TimeTrigger tTrig = new TimeTrigger(DateTime.Now);
                 tTrig.StartBoundary = DateTime.Now + TimeSpan.FromMinutes(Convert.ToDouble(col["delay"]));
-                tTrig.Repetition.Interval = TimeSpan.FromMinutes(Convert.ToDouble(col["interval"])); // 1 min
+                tTrig.Repetition.Interval = TimeSpan.FromMinutes(Convert.ToDouble(col["interval"])); // minimum 1 minuta
                 tTrig.EndBoundary = DateTime.Now + TimeSpan.FromMinutes(Convert.ToDouble(col["duration"])) + TimeSpan.FromMinutes(Convert.ToDouble(col["delay"]));
                 td.Triggers.Add(tTrig);
                 if (Convert.ToDouble(col["delay"]) == 0)
@@ -43,11 +51,11 @@ namespace PLCLAB.Controllers
                     + col["port"] + " "
                     + col["functionN"] + " "
                     + col["startingAddress"] + " "
-                    + col["quantity"]// + " "
-                                     //+ taskid
+                    + col["quantity"] + " "
+                    + newTaskId
                 ;
 
-                td.Actions.Add(new ExecAction(Server.MapPath("~/paramtest/paramtest.exe"), str));
+                td.Actions.Add(new ExecAction(Server.MapPath("~/App_Data/PLC_console.exe"), str));
 
                 //ts.RootFolder.RegisterTaskDefinition("task " + almostrandom + "t" + col["startingAddress"] + "f" + col["functionN"] + "" + col["duration"] + "" + col["interval"], td);
                 ts.RootFolder.RegisterTaskDefinition("task " + almostrandom, td);

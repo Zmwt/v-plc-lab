@@ -66,44 +66,138 @@
 
     <hr />
 
-    @Html.Label("Odczyt :")
-    <br />
 
-    @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
+    <div class="odczyt">
+        @Html.Label("Odczyt :", htmlAttributes: new { @class = "boldfont" })
+        <br />
+
+        @using (Html.BeginForm("Read", "PLC", FormMethod.Post, null))
+        {
+            @Html.AntiForgeryToken()
+
+            <input type="hidden" name="id" value="@Model.Id" />
+            @Html.Label("Typ adresu do odczytu :")
+            <div class="form-group">
+
+                <label class="radio-inline"><input type="radio" name="functionN" value="1" checked>%Q - Wyjścia</label>
+                <label class="radio-inline"><input type="radio" name="functionN" value="2">%I - Wejścia</label>
+                <label class="radio-inline"><input type="radio" name="functionN" value="3">%R - Rejestry</label>
+                <label class="radio-inline"><input type="radio" name="functionN" value="4">%AI - Wejścia analogowe</label>
+
+            </div>
+            <div class="form-group">
+                @Html.Label("Adres początkowy : ", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-2">
+                    @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("Ilość adresów do odczytu : ", htmlAttributes: new { @class = "control-label col-md-12" })
+                <div class="col-md-2">
+                    @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12">
+                    <input type="submit" value="Odczyt" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+
+    @if (User.IsInRole("Admin"))
     {
-        @Html.AntiForgeryToken()
+        <br />
 
-        <input type="hidden" name="id" value="@Model.Id" />
-        @Html.Label("Typ adresu do odczytu :")
-        <div class="form-group">
+        <div class="zadania">
+            <p>Ustaw parametry zadania :</p>
+            @Html.Label("Planowanie zadań :", htmlAttributes: new { @class = "boldfont" })
 
-            <label class="radio-inline"><input type="radio" name="functionN" value="1" checked>%Q - Wyjścia</label>
-            <label class="radio-inline"><input type="radio" name="functionN" value="2">%I - Wejścia</label>
-            <label class="radio-inline"><input type="radio" name="functionN" value="3">%R - Rejestry</label>
-            <label class="radio-inline"><input type="radio" name="functionN" value="4">%AI - Wejścia analogowe</label>
+            @using (Html.BeginForm("Set", "Task", FormMethod.Post, null))
+            {
+                @Html.AntiForgeryToken()
 
-        </div>
-        <div class="form-group">
-            @Html.Label("Adres początkowy : ", htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-2">
-                @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.Label("Ilość adresów do odczytu : ", htmlAttributes: new { @class = "control-label col-md-12" })
-            <div class="col-md-2">
-                @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-12">
-                <input type="submit" value="Odczyt" class="btn btn-default" />
-            </div>
+                /*
+                  args structure :
+                    0 - id/name (plc)   // model
+                    1 - ip              // model
+                    2 - port            // model
+                    3 - action type (odczyt : Q I R AI)
+                    4 - address-start
+                    5 - quantity (of adresses to read)
+                    6 - task id         // tym zajmuje sie task controller
+                 */
+
+
+                //<input type="hidden" name="id" value="@Model.Id" />
+                //<input type="hidden" name="ip" value="@Model.Ip" />
+                //<input type="hidden" name="port" value="@Model.Port" />
+                <input type="hidden" name="id" value="@Model.Id" />
+                <input type="hidden" name="ip" value="@Model.IPAddress" />
+                <input type="hidden" name="port" value="@Model.Port" />
+
+
+                @Html.Label("Typ adresu do odczytu :")
+                <div class="form-group">
+
+                    <label class="radio-inline"><input type="radio" name="functionN" value="1" checked>%Q - Wyjścia</label>
+                    <label class="radio-inline"><input type="radio" name="functionN" value="2">%I - Wejścia</label>
+                    <label class="radio-inline"><input type="radio" name="functionN" value="3">%R - Rejestry</label>
+                    <label class="radio-inline"><input type="radio" name="functionN" value="4">%AI - Wejścia analogowe</label>
+
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Adres początkowy : ", htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-2">
+                        @Html.Editor("startingAddress", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ilość adresów do odczytu : ", htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-2">
+                        @Html.Editor("quantity", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @step = "1", @Value = "1" } })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.Label("Czas trwania zadania (w minutach) :", htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-2">
+                        @Html.Editor("duration", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @max = "1440", @step = "1", @Value = "1" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Co jaki okres czasu ma być uruchamiane zadanie (w minutach)", htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-2">
+                        @Html.Editor("interval", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "1", @max = "1440", @step = "1", @Value = "1" } })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Opóźnienie przed rozpoczęciem zadania (w minutach) (0 = brak opóźnienia)", htmlAttributes: new { @class = "control-label col-md-12" })
+                    <div class="col-md-2">
+                        @Html.Editor("delay", new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @max = "120", @step = "1", @Value = "0" } })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <input type="submit" value="OK" class="btn btn-success" />
+                    </div>
+                </div>
+            }
+
         </div>
     }
 
-    @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Powrót", "Main", null, new { @class = "btn btn-info" })
 
-</div>
+    </div>
